@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>手表柜台销售管理系统</title>
+    <link type="favicon" rel="shortcut icon" href="static/img/favicon.ico"/>
+    <link rel="stylesheet" href="static/css/public.css"/>
+    <link rel="stylesheet" href="static/css/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header class="publicHeader">
+    <h1>手表柜台销售管理系统</h1>
+    <div class="publicHeaderR">
+        <p><span style="color: #fff21b"> {{session["user_name"]}}</span> , 欢迎你！</p>
+        <a href="/login">退出</a>
+    </div>
+</header>
+<!--时间-->
+<section class="publicTime">
+    <span id="time">2015年1月1日 11:11  星期一</span>
+    <a href="#">本Demo后台使用tornado框架开发并部署,服务器为阿里云Linux(Ubuntu 16.04.2)服务器</a>
+</section>
+<!--主体内容-->
+<section class="publicMian ">
+    <div class="left">
+        <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+        <nav>
+            <ul class="list">
+                <li><a href="/billList">销售单管理</a></li>
+                <li><a href="/stockList">库存管理</a></li>
+                <li id="active"><a href="/userList">用户管理</a></li>
+                <li><a href="/password">密码修改</a></li>
+                <li><a href="/login">退出系统</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>用户管理页面</span>
+        </div>
+        <div class="search" >
+            <span>用户名：</span>
+            <input type="text" value="{{user_no}}" class="user_no" placeholder="请输入用户名"/>
+            <input type="button" id="chaxun" value="查询"/>
+            <a href="/userAdd">添加用户</a>
+        </div>
+        <!--用户-->
+        <table class="stockTable" cellpadding="0" cellspacing="0">
+            <tr class="firstTr">
+                <th width="10%">用户编码</th>
+                <th width="15%">用户名称</th>
+                <th width="10%">性别</th>
+                <th width="10%">角色</th>
+                <th width="15%">电话</th>
+                <th width="10%">使用状态</th>
+                <!--<th width="10%">用户类型</th>-->
+                <th width="15%">操作</th>
+            </tr>
+            {% if len(rows)>0 %}
+            {% for row in rows %}
+            <tr>
+                <td>{{row["user_no"]}}</td>
+                <td>{{row["user_name"]}}</td>
+                <td>{%if row["user_gender"]=="B" %}男 {% else %} 女 {% end %}</td>
+                <td>{%if row["user_role"]=="A" %}管理员 {% elif row["user_role"]=="M" %} 经理 {% else %} 普通用户 {% end %}</td>
+                <td>{{row["user_tel"]}}</td>
+                <td>{%if row["is_work"]=="on" %}在职 {% else %} 离职 {% end %}</td>
+
+                <td>
+                    <a href="/userView?user_no={{row["user_no"]}}"><img src="static/img/read.png" alt="查看"
+                                                                          title="查看"/></a>
+                    <a href="/userUpdate?user_no={{row["user_no"]}}"><img src="static/img/xiugai.png" alt="修改"
+                                                                            title="修改"/></a>
+                    <a href="#" user_no="{{row["user_no"]}}" class="removeuser" onclick="deleteuser(this)"><img
+                        src="static/img/schu.png" alt="删除" title="删除"/></a>
+                </td>
+            </tr>
+            {% end %}
+            {% end %}
+
+        </table>
+
+    </div>
+</section>
+
+<!--弹出询问框-->
+<div class="zhezhao"></div>
+<div class="remove" id="removeUse">
+    <div class="removerChid">
+        <h2>提示</h2>
+        <div class="removeMain">
+            <p id="msg_info">你确定要删除该用户吗？</p>
+            <a href="#" id="yes">确定</a>
+            <a href="#" id="no">取消</a>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+</footer>
+
+ <script src="static/js/jquery.js"></script>
+ <script src="static/js/js.js"></script>
+ <script src="static/js/time.js"></script>
+ <script src="static/js/salejs/hu_user.js"></script>
+
+</body>
+</html>

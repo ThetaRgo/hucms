@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>手表柜台销售管理系统</title>
+    <link type="favicon" rel="shortcut icon" href="static/img/favicon.ico" />
+    <link rel="stylesheet" href="static/css/public.css"/>
+    <link rel="stylesheet" href="static/css/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header class="publicHeader">
+    <h1>手表柜台销售管理系统</h1>
+
+    <div class="publicHeaderR">
+        <p><span style="color: #fff21b"> {{session["user_name"]}}</span> , 欢迎你！</p>
+        <a href="/login">退出</a>
+    </div>
+</header>
+<!--时间-->
+<section class="publicTime">
+    <span id="time">2015年1月1日 11:11  星期一</span>
+    <a href="#">本Demo后台使用tornado框架开发并部署,服务器为阿里云Linux(Ubuntu 16.04.2)服务器</a>
+</section>
+<!--主体内容-->
+<section class="publicMian ">
+    <div class="left">
+        <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+        <nav>
+            <ul class="list">
+                <li><a href="/billList">销售单管理</a></li>
+                <li ><a href="/stockList">库存管理</a></li>
+                <li id="active"><a href="/userList">用户管理</a></li>
+                <li><a href="/password">密码修改</a></li>
+                <li><a href="/login">退出系统</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>用户管理页面 >> 用户添加页面</span>
+        </div>
+        <div class="stockAdd">
+            <form action="#" class="UserSaveForm">
+
+                <div class="">
+                    <label for="user_no">用户编码：</label>
+                    <input type="text" name="user_no" id="user_no" maxlength="4"/>
+                    <span>*请输入用户编码，且不能重复</span>
+                </div>
+                <div>
+                    <label for="user_name">用户名称：</label>
+                    <input type="text" name="user_name" id="user_name" maxlength="20"/>
+                    <span >*请输入用户名称</span>
+                </div>
+                <div>
+                    <label for="user_pass">密码：</label>
+                    <input type="text" name="user_pass" id="user_pass"/>
+                    <span>*密码长度必须大于6位小于20位</span>
+
+                </div>
+
+                <div>
+                    <label >用户性别：</label>
+                    <select name="user_gender",id="user_gender">
+                        <option value="B">男</option>
+                        <option value="G">女</option>
+                    </select>
+                    <span></span>
+                </div>
+                <div>
+                    <label for="user_tel">电话：</label>
+                    <input type="text" name="user_tel" id="user_tel" maxlength="20"/>
+                    <span >*</span>
+                </div>
+                <div>
+                    <label >角色：</label>
+                    <input type="radio" name="user_role" value="A"/>管理员
+                    <input type="radio" name="user_role" value="M"/>经理
+                    <input type="radio" name="user_role" value="U" checked/>普通用户
+                </div>
+
+                <div>
+                    <label >用户状态：</label>
+                    <input type="radio" name="is_work" value="on" checked/>在职
+                    <input type="radio" name="is_work" value="off"/>离职
+                    <span >*</span>
+                </div>
+
+
+                <div class="stockAddBtn">
+
+                    <input type="button" id="saveadduser" value="保存" onclick=""/>
+                    <a href="/userList">返回</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+<footer class="footer">
+</footer>
+<script src="static/js/time.js"></script>
+<script src="static/js/jquery.js"></script>
+<script src="static/js/js.js"></script>
+<script src="static/js/salejs/hu_user.js"></script>
+
+</body>
+</html>
