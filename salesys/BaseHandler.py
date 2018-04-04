@@ -45,7 +45,6 @@ class BaseHandler(RequestHandler):
         if self.sessionid:
             sess_data = self.db.get("select session_data from h_session where sessionid = %(sessionid)s",
                                     sessionid=self.sessionid)
-
             self.session = eval(dict(sess_data).get("session_data",''))
 
         else: #如果sessionid不存在,直接跳转登陆界面
