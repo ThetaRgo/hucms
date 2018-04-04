@@ -34,7 +34,6 @@ class BaseHandler(RequestHandler):
 
     def check_session(self):
         """
-        sessionid规则:user_no+password+混淆字符串进行sha2操作
         sessionid判定合法原则:
         登陆界面:是如果有sessionid直接清除,登陆成功后重新置sessionid
         其他界面:有sessionid即可.否则返回登陆界面
@@ -52,18 +51,3 @@ class BaseHandler(RequestHandler):
         else: #如果sessionid不存在,直接跳转登陆界面
             return self.redirect("/login")
 
-
-    def dbget(self, getString):
-        """数据库读取封装,若出错直接返回错误对象 """
-        try:
-            db_ret = self.db.get(getString)
-        except Exception as e:
-            return e
-        return db_ret
-
-    def dbquery(self, queryString):
-        try:
-            db_ret = self.db.query(queryString)
-        except Exception as e:
-            return e
-        return db_ret
